@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import seung.shopping.backend.entity.Item;
 import seung.shopping.backend.repository.ItemRepository;
-import seung.shopping.backend.service.ItemService;
 
 import java.util.List;
 

@@ -1,9 +1,11 @@
 package seung.shopping.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import seung.shopping.backend.entity.Member;
 import seung.shopping.backend.repository.MemberRepository;
 
@@ -24,7 +26,7 @@ public class AccountController {
             return member.getId();
         }
 
-        return 0;
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
 }
