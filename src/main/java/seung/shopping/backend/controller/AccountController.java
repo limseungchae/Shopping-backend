@@ -40,8 +40,10 @@ public class AccountController {
             cookie.setPath("/");
 
             res.addCookie(cookie);
-            // 쿠키를 응답값에 준다
-            return ResponseEntity.ok().build();
+            // 쿠키를 응답값에 준다 f12 쿠키로 확인가능
+            // return ResponseEntity.ok().build();
+            // 응답값 오는지 확인가능
+            return new ResponseEntity<>(id, HttpStatus.OK);
         }
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
