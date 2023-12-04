@@ -3,11 +3,10 @@ package seung.shopping.backend.controller;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import seung.shopping.backend.entity.Member;
 import seung.shopping.backend.repository.MemberRepository;
@@ -21,7 +20,8 @@ import java.util.Map;
 @RestController
 public class AccountController {
 
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
+    private final JwtService jwtService;
 
     @PostMapping("/api/account/login")
     public ResponseEntity login(@RequestBody Map<String, String> params,
@@ -30,7 +30,6 @@ public class AccountController {
 
         // 멤버값이 널이 아닐경우
         if(member != null) {
-            JwtService jwtService = new JwtServiceImpl();
             int id = member.getId();
             // id 토큰화
             String token = jwtService.getToken("id", id);
@@ -48,5 +47,4 @@ public class AccountController {
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
-
 }
